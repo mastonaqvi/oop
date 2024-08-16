@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class student {
+public:
+    int age;
+    float cgpa;
+    string name; // Use std::string for automatic memory management
+};
+
+int main() {
+    student one, two;
+
+    one.name = "John";
+    two.name = "Alice";
+
+    one.age = 40;
+    two.age = 30;
+
+    cout << "Student 1 Age: " << one.age << endl;
+    cout << "Student 2 Age: " << two.age << endl;
+
+    return 0;
+}
