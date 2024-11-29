@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+
+class Point {
+      int x;
+      int y;
+
+public:
+      Point() : x(0), y(0) {}
+      Point(int val1, int val2) : x(val1), y(val2) {}
+
+      void setX(int val1) {
+            x = val1;
+      }
+
+      int getX() const {
+            return x;
+      }
+
+      void setY(int val2) {
+            y = val2;
+      }
+
+      int getY() const {
+            return y;
+      }
+
+      void display() const {
+            cout << "X: " << x << ", Y: " << y << endl;
+      }
+
+      friend Point operator +(const Point& p1, const Point& p2) {
+            return Point(p1.x + p2.x, p1.y + p2.y);
+      }
+
+      friend bool operator ==(const Point& p1, const Point& p2) {
+            return (p1.x == p2.x && p1.y == p2.y);
+      }
+
+      friend bool operator !=(const Point& p1, const Point& p2) {
+            return !(p1 == p2);
+      }
+};
+
+int main() {
+      Point p1(3, 4);
+      Point p2(5, 6);
+
+      cout << "Point 1: ";
+      p1.display();
+      cout << "Point 2: ";
+      p2.display();
+
+      Point p3 = p1 + p2;
+      cout << "Point 3 (after adding Point 1 and Point 2): ";
+      p3.display();
+
+      if (p1 == p2) {
+            cout << "Point 1 is equal to Point 2." << endl;
+      }
+      else {
+            cout << "Point 1 is not equal to Point 2." << endl;
+      }
+
+      if (p1 != p3) {
+            cout << "Point 1 is not equal to Point 3." << endl;
+      }
+      else {
+            cout << "Point 1 is equal to Point 3." << endl;
+      }
+
+      return 0;
+}
