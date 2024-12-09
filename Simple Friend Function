@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+class Square;
+class Rectangle{
+    int length;
+    int width;
+
+    public:
+    Rectangle(){
+        length=0;
+        width=0;
+    }
+    void setRectangle(int length, int width){
+        this->length=length;
+        this->width=width;
+
+    }
+    friend int calculateAreaDifference( Rectangle & react , Square& squ);
+
+};
+class Square{
+    int side;
+    public:
+    Square(){
+        side=0;
+    }
+    void setSquare(int side){
+        this->side=side;
+    }
+    friend int calculateAreaDifference( Rectangle & react , Square& squ);
+
+
+};
+ int calculateAreaDifference( Rectangle & react , Square& squ){
+    int rectangleArea= react.length * react.width;
+    int squareArea= squ.side * squ.side;
+    return rectangleArea-squareArea;
+ }
+int main(){
+    Rectangle react;
+    Square squ;
+
+    react.setRectangle(9,7);
+    squ.setSquare(8);
+
+    int areaDifference=calculateAreaDifference(react, squ);
+    cout << "The area difference is: " << areaDifference << endl;
+
+    return 0;
+
+
+
+
+}
