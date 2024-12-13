@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Student {
+private:
+    string courseName;
+    int semester;
+    double gpa;
+
+public:
+    // Static constant member for the university
+    static const string University;
+
+    // Constructor to initialize the object
+    Student(string course, int sem, double g, int s) : courseName(course), semester(sem), gpa(g) {}
+
+    // Overloaded << operator to print student details
+    friend ostream& operator<<(ostream& os, const Student& s);
+};
+
+// Define the static constant member outside the class
+const string Student::University = "University of Central Punjab";
+
+ostream& operator<<(ostream& os, const Student& s) {
+    os << "Course: " << s.courseName << ", Semester: " << s.semester << ", GPA: " << s.gpa
+       << ", University: " << Student::University; // Access static member
+    return os;
+}
+
+int main() {
+    Student ss("Object Oriented Programming", 3, 2.0, 0);
+    cout << ss << endl;
+    return 0;
+}
