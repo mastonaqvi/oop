@@ -1,0 +1,76 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Projector {
+private:
+    string brand;
+    string model;
+    string resolution;
+    int brightness;
+    string serialNumber;
+    static int projectorCount;
+
+public:
+    // Constructor
+    Projector(string b, string m, string r, int br, string sn) 
+        : brand(b), model(m), resolution(r), brightness(br), serialNumber(sn) {
+        projectorCount++;
+        cout << "Projector created: " << serialNumber << endl;
+    }
+
+    // Copy Constructor
+    Projector(const Projector& p) 
+        : brand(p.brand), model(p.model), resolution(p.resolution), 
+          brightness(p.brightness), serialNumber(p.serialNumber) {
+        projectorCount++;
+        cout << "Copy Constructor called for projector: " << serialNumber << endl;
+    }
+
+    // Destructor
+    ~Projector() {
+        cout << "Projector destroyed: " << serialNumber << endl;
+        projectorCount--;
+    }
+
+    // Static function to compare brightness
+    static Projector CompareBrightness(const Projector& p1, const Projector& p2) {
+        return (p1.brightness > p2.brightness) ? p1 : p2;
+    }
+
+    // Display details
+    void displayDetails() const {
+        cout << "Projector Details:\n";
+        cout << "Brand: " << brand << endl;
+        cout << "Model: " << model << endl;
+        cout << "Resolution: " << resolution << endl;
+        cout << "Brightness: " << brightness << " Lumens" << endl;
+        cout << "Serial Number: " << serialNumber << endl;
+    }
+
+    // Static function to get projector count
+    static int getProjectorCount() {
+        return projectorCount;
+    }
+};
+
+// Initialize static member
+int Projector::projectorCount = 0;
+
+int main() {
+    // Create projectors
+    Projector p1("Epson", "X200", "1080p", 3000, "SN12345");
+    Projector p2("BenQ", "Z300", "4K", 4000, "SN54321");
+
+    // Compare brightness
+    Projector brighterProjector = Projector::CompareBrightness(p1, p2);
+
+    // Display the brighter projector's details
+    cout << "\nThe projector with higher brightness is:\n";
+    brighterProjector.displayDetails();
+
+    // Display total number of projectors created
+    cout << "\nTotal number of projectors created: " << Projector::getProjectorCount() << endl;
+
+    return 0;
+}
