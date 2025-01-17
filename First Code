@@ -13,7 +13,7 @@ public:
 int main() {
     student one, two;
 
-    one.name = "John";
+    one.name = "Raza";
     two.name = "Alice";
 
     one.age = 40;
