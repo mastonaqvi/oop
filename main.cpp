@@ -9,7 +9,7 @@ class Student{
 
 
 public:
-//setters
+//Setters
 
   void setAge(int Parameter){
     age=Parameter;
