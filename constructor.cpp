@@ -8,7 +8,7 @@ class Student {
 
 public:
     
-    Student() {
+    Student() { //constructor 
         age = 20;
         cgpa = 0.0;
         name = nullptr;
